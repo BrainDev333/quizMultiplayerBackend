@@ -1,0 +1,19 @@
+// FIXME: you removed type:module from eslint config so that nodemon works.
+//stackoverflow.com/questions/63742790/unable-to-import-esm-ts-module-in-node/74608156#74608156
+//na7i el virgule.
+
+
+//ki taaml appel l route mch mawjouda tarja3lk reponse hethi.
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Error</title>
+</head>
+
+<body>
+	<pre>Cannot POST /quizzes</pre>
+</body>
+
+</html>

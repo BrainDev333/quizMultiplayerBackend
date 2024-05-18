@@ -1,0 +1,30 @@
+const env = process.env as Record<string, string>;
+
+const Config = {
+  SERVER: {
+    DOMAIN: env.DOMAIN,
+    ENV: env.NODE_ENV,
+    PORT: env.PORT || 3000,
+    TIMEZONE: env.TZ,
+  },
+  DATABASE: {
+    CONNECTION_STRING: env.DATABASE_CONNECTION_STRING,
+  },
+  SLACK: {
+    WEBHOOK_URL: env.SLACK_WEBHOOK_URL,
+    ALERTS_CHANNEL: env.SLACK_ALERTS_CHANNEL,
+  },
+  AUTH: {
+    JWT_SECRET: env.JWT_SECRET,
+    PASSWORD_RESET_CODE_EXPIRES_IN: +env.PASSWORD_RESET_CODE_EXPIRES_IN,
+  },
+  LOGGER: {
+    LOG_METADATA: env.LOGGER_LOG_METADATA === 'true',
+    LOG_TIMESTAMP: env.LOGGER_LOG_TIMESTAMP === 'true',
+    CONSOLE_LEVEL: env.LOGGER_CONSOLE_LEVEL,
+    MONGO_LEVEL: env.LOGGER_MONGO_LEVEL,
+    SLACK_LEVEL: env.LOGGER_SLACK_LEVEL,
+  },
+};
+
+export const { SERVER, DATABASE, SLACK, AUTH, LOGGER } = Config;
