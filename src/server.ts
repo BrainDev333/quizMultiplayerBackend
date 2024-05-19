@@ -12,6 +12,10 @@ import { connectToDatabase } from './utils/database.utils';
 import { generateSessionId } from './utils/utils';
 import { Server } from 'http';
 
+const ORIGIN = process.env.ORIGIN
+
+// import { Quiz } from './models/quiz.model';
+
 // interface CustomSocket extends Socket {
 //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 //   request: IncomingMessage & { session: any }; // Adjust the type definition as needed
@@ -34,7 +38,7 @@ app.use(express.json());
 app.use(
   cors({
     // origin: [process.env.ORIGIN], //frontend server localhost:8080
-    origin: 'http://localhost:3000',
+    origin: ORIGIN,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // enable set cookie
   }),
@@ -46,7 +50,7 @@ const httpServer: Server = new Server(app);
 // Attach Socket.IO to the HTTP server
 const io: SocketServer = new SocketServer(httpServer, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: ORIGIN,
     methods: ['GET', 'POST'],
   },
 });
@@ -103,52 +107,4 @@ httpServer.listen(SERVER.PORT, async () => {
   console.log(`Server is running on port ${SERVER.PORT}`);
 });
 
-// const quiz = await Quiz.findOne();
-// quiz.questions.push({
-//   questionText:
-//     'Quels objectifs glycémiques recommandez-vous pour ce patient ?',
-//   possibleAnswers: [
-//     'HbA1C < 6,5 %',
-//     'HbA1C < 7 %',
-//     'G0 < 1,3g/l',
-//     'GPP < 1,8g/l',
-//     'Excursions glycémique < 0,6g/l',
-//   ],
-//   correctAnswerIndices: [1, 2, 3],
-// });
-// quiz.questions.push({
-//   questionText:
-//     'Quels objectifs glycémiques recommandez-vous pour ce patient ?',
-//   possibleAnswers: [
-//     'HbA1C < 6,5 %',
-//     'HbA1C < 7 %',
-//     'G0 < 1,3g/l',
-//     'GPP < 1,8g/l',
-//     'Excursions glycémique < 0,6g/l',
-//   ],
-//   correctAnswerIndices: [1, 2, 3],
-// });
-// quiz.questions.push({
-//   questionText:
-//     'Quelles options thérapeutiques préconisez-vous pour ce patient ?',
-//   possibleAnswers: [
-//     'Ajouter un inhibiteur DPP4',
-//     'Ajouter un inhibiteur des α Glucosidases',
-//     'Ajouter un ISGLT-2',
-//     'Ajouter un agoniste GLP-1',
-//     'Initiation d’une insuline basale',
-//   ],
-//   correctAnswerIndices: [0, 3],
-// });
-// quiz.questions.push({
-//   questionText:
-//     'Quels sont les mécanismes d’action potentiellement bénéfiques des ISGLT2 chez ce patient ?',
-//   possibleAnswers: [
-//     'Amélioration de l’équilibre glycémique indépendamment de l’insulinosécrétion',
-//     'Augmentation de la natriurèse',
-//     'Augmentation des besoins en oxygène du myocarde',
-//     'Amélioration du remodelage ventriculaire gauche',
-//     'Perte pondérale modérée',
-//   ],
-//   correctAnswerIndices: [0, 1, 2, 3, 4],
-// });
+

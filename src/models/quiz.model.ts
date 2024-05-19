@@ -11,7 +11,7 @@ interface IQuiz {
     questionText: string;
     possibleAnswers: string[];
     correctAnswerIndices: number[];
-    _id: string;
+    _id?: string;
   }[];
 }
 
