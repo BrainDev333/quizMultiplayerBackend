@@ -2,6 +2,7 @@ import express from 'express'
 import {
   checkGameSessionStatus,
   createGameSession,
+  getGameSession,
   getPlayerData,
   updatePlayerScore,
 } from '../../controllers/gameSession.controller'
@@ -25,5 +26,7 @@ router.get(
   '/:gameSessionId/player/:playerSessionId',
   asyncMiddleware(getPlayerData)
 )
+
+router.get('/:gameSessionId', asyncMiddleware(getGameSession))
 
 export { router as gameSessionRoutes }

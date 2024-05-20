@@ -59,9 +59,19 @@ async function getPlayerData(req: Request, res: Response): Promise<void> {
   res.json({ player })
 }
 
+async function getGameSession(req: Request, res: Response): Promise<void> {
+  const { gameSessionId } = req.params
+
+  const gameSession = await new GameSessionService().findGameSession(
+    gameSessionId
+  )
+  res.json({ gameSession })
+}
+
 export {
   createGameSession,
   checkGameSessionStatus,
   updatePlayerScore,
   getPlayerData,
+  getGameSession,
 }
