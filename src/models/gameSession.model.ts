@@ -1,8 +1,8 @@
-import { Schema, Types, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose'
 import {
   defaultSchemaOptions,
   modelOptions,
-} from '../constants/database.constants';
+} from '../constants/database.constants'
 
 enum PerkType {
   ASK_PUBLIC = 'ask_public',
@@ -10,8 +10,8 @@ enum PerkType {
 }
 
 interface Perk {
-  type: PerkType;
-  usageCount: number;
+  type: PerkType
+  usageCount: number
 }
 
 enum GameSessionStatus {
@@ -21,22 +21,22 @@ enum GameSessionStatus {
 }
 
 interface IGameSession {
-  _id: Types.ObjectId;
-  currentQuestionIndex: number;
+  _id: Types.ObjectId
+  currentQuestionIndex: number
   players: {
-    sessionId: string;
-    score: number;
-    perks: Perk[];
-  }[];
+    sessionId: string
+    score: number
+    perks: Perk[]
+  }[]
   moderator: {
-    sessionId: string;
-  };
+    sessionId: string
+  }
   selectedAnswers: {
-    playerId: string;
-    answerIndices: number[];
-  }[];
-  correctAnswerIndices: number[];
-  status: GameSessionStatus;
+    playerId: string
+    answerIndices: number[]
+  }[]
+  correctAnswerIndices: number[]
+  status: GameSessionStatus
 }
 
 const gameSessionSchema = new Schema<IGameSession>(
@@ -65,13 +65,13 @@ const gameSessionSchema = new Schema<IGameSession>(
       default: GameSessionStatus.WAITING,
     },
   },
-  defaultSchemaOptions,
-);
+  defaultSchemaOptions
+)
 
 const GameSession = model<IGameSession>(
   modelOptions.GAME_SESSION.modelName,
   gameSessionSchema,
-  modelOptions.GAME_SESSION.collectionName,
-);
+  modelOptions.GAME_SESSION.collectionName
+)
 
-export { GameSession, IGameSession, GameSessionStatus };
+export { GameSession, IGameSession, GameSessionStatus }
