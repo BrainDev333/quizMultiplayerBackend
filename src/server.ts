@@ -88,15 +88,21 @@ io.on('connection', (socket: Socket) => {
   })
 
   socket.on('send_game_session_status_update', (data) => {
-    console.log('send_game_session_status_update DATA', data)
-    socket.broadcast.emit('receive_game_session_status_update', data)
+    console.log('send_game_session_status_update DATA', data);
+    socket.broadcast.emit('receive_game_session_status_update', data);
+  });
+
+  socket.on('send_is_answered_or_timer_player1', (data) => {
+    console.log('send_is_answered_or_timer_finished DATA player 1', data)
+    socket.broadcast.emit('send_is_answered_or_timer_player1', data)
   })
 
-  socket.on('send_is_answered_or_timer_finished', (data) => {
-    console.log('send_is_answered_or_timer_finished DATA', data)
-    socket.broadcast.emit('receive_is_answered_or_timer_finished', data)
+  socket.on('send_is_answered_or_timer_player2', (data) => {
+    console.log('send_is_answered_or_timer_finished DATA player 1', data)
+    socket.broadcast.emit('send_is_answered_or_timer_player2', data)
   })
-})
+});
+
 
 // Connect to the database
 connectToDatabase()
