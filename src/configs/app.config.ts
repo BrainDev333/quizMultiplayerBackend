@@ -1,4 +1,4 @@
-const env = process.env as Record<string, string>;
+const env = process.env as Record<string, string>
 
 const Config = {
   SERVER: {
@@ -25,6 +25,10 @@ const Config = {
     MONGO_LEVEL: env.LOGGER_MONGO_LEVEL,
     SLACK_LEVEL: env.LOGGER_SLACK_LEVEL,
   },
-};
+  GAME: {
+    POINTS_PER_CORRECT_ANSWER: 10,
+    // POINTS_PER_CORRECT_ANSWER: Number(env.POINTS_PER_CORRECT_ANSWER), TODO:
+  },
+}
 
-export const { SERVER, DATABASE, SLACK, AUTH, LOGGER } = Config;
+export const { SERVER, DATABASE, SLACK, AUTH, LOGGER, GAME } = Config
