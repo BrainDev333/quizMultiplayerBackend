@@ -16,8 +16,8 @@ interface Perk {
 
 enum GameSessionStatus {
   WAITING = 'waiting',
-  STARTED = 'started',
-  ENDED = 'ended',
+  IN_PROGRESS = 'inprogress',
+  FINISHED = 'finished',
 }
 
 interface IGameSession {

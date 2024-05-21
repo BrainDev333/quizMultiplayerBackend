@@ -4,6 +4,7 @@ import {
   createGameSession,
   getGameSession,
   getPlayerData,
+  updateGameSession,
   updatePlayerScore,
 } from '../../controllers/gameSession.controller'
 import validate from '../../middleware/validation.middleware'
@@ -28,5 +29,6 @@ router.get(
 )
 
 router.get('/:gameSessionId', asyncMiddleware(getGameSession))
+router.put('/:gameSessionId', asyncMiddleware(updateGameSession))
 
 export { router as gameSessionRoutes }
