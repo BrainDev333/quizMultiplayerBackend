@@ -1,3 +1,4 @@
+import { GAME } from '../configs/app.config'
 import { GAME_SESSION_ERRORS } from '../constants/errorMessages.constants'
 import BadRequestError from '../errors/bad-request.error'
 import NotFoundError from '../errors/not-found.error'
@@ -53,7 +54,7 @@ export default class GameSessionService {
           message: 'PLAYER_NOT_FOUND',
         })
 
-      gameSession.players[playerIndex].score++
+      gameSession.players[playerIndex].score += GAME.POINTS_PER_CORRECT_ANSWER
       await gameSession.save()
     } catch (error) {
       console.error('Error updating player score:', error)
