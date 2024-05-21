@@ -1,7 +1,11 @@
 import { GAME_SESSION_ERRORS } from '../constants/errorMessages.constants'
 import BadRequestError from '../errors/bad-request.error'
 import NotFoundError from '../errors/not-found.error'
-import { GameSession, IGameSession } from '../models/gameSession.model'
+import {
+  GameSession,
+  GameSessionStatus,
+  IGameSession,
+} from '../models/gameSession.model'
 import { Quiz } from '../models/quiz.model'
 
 export default class GameSessionService {
@@ -26,6 +30,7 @@ export default class GameSessionService {
       currentQuestionIndex: 0,
       selectedAnswers: [],
       correctAnswerIndices: [],
+      status: GameSessionStatus.IN_PROGRESS, //TODO:
     })
 
     return gameSession
@@ -77,6 +82,17 @@ export default class GameSessionService {
       })
 
     return player
+  }
+
+  async updateGameSession(
+    gameSessionId: string,
+    updateData: Partial<IGameSession>
+  ): Promise<IGameSession | null> {
+    return await GameSession.findByIdAndUpdate(
+      gameSessionId,
+      { $set: updateData },
+      { new: true, runValidators: true }
+    ).exec()
   }
 
   // async submitAnswer(

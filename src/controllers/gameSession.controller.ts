@@ -29,7 +29,7 @@ async function checkGameSessionStatus(_req: Request, res: Response) {
   try {
     // Check if the game session has started (you might need to adjust the condition based on your game logic)
     const gameSessionStarted = await GameSession.exists({
-      status: GameSessionStatus.STARTED,
+      status: GameSessionStatus.IN_PROGRESS,
     })
     res.json({ gameSessionStarted })
   } catch (error) {
@@ -68,10 +68,21 @@ async function getGameSession(req: Request, res: Response): Promise<void> {
   res.json({ gameSession })
 }
 
+async function updateGameSession(req: Request, res: Response): Promise<void> {
+  const { gameSessionId } = req.params
+  const updateData = req.body
+  const gameSession = await new GameSessionService().updateGameSession(
+    gameSessionId,
+    updateData
+  )
+  res.status(204).json({ gameSession })
+}
+
 export {
   createGameSession,
   checkGameSessionStatus,
   updatePlayerScore,
   getPlayerData,
   getGameSession,
+  updateGameSession,
 }
